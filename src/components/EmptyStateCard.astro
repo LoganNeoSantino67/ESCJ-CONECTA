@@ -1,0 +1,31 @@
+---
+interface Props {
+  eyebrow: string;
+  title: string;
+  description: string;
+  icon?: string;
+}
+
+const { eyebrow, title, description, icon = '•' } = Astro.props;
+---
+
+<div class="empty-state-card" role="status">
+  <span class="empty-state-icon" aria-hidden="true">{icon}</span>
+  <div class="empty-state-copy">
+    <span class="empty-state-eyebrow">{eyebrow}</span>
+    <strong>{title}</strong>
+    <p>{description}</p>
+  </div>
+  <span class="empty-state-rule" aria-hidden="true"></span>
+</div>
+
+<style>
+  .empty-state-card { position: relative; display: flex; min-height: 150px; align-items: center; gap: 22px; overflow: hidden; padding: 28px 32px; border: 1px solid var(--line); border-radius: 9px; background: linear-gradient(112deg, #fff 0%, #f8fafd 100%); box-shadow: 0 14px 35px #102d5b08; }
+  .empty-state-icon { display: grid; flex: 0 0 auto; width: 54px; height: 54px; place-items: center; border: 1px solid #d8e3f0; border-radius: 15px; background: var(--blue-soft); color: var(--blue); font-size: 1.35rem; }
+  .empty-state-copy { display: grid; gap: 6px; }
+  .empty-state-eyebrow { color: var(--red); font-size: .66rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
+  .empty-state-copy strong { color: var(--navy); font: 700 1.08rem var(--font-display); }
+  .empty-state-copy p { margin: 0; color: var(--muted); font-size: .88rem; line-height: 1.65; }
+  .empty-state-rule { position: absolute; top: 0; bottom: 0; right: 0; width: 5px; background: linear-gradient(var(--red) 0 36%, var(--blue) 36%); }
+  @media (max-width: 560px) { .empty-state-card { min-height: 0; gap: 15px; padding: 22px 24px 22px 18px; } .empty-state-icon { width: 44px; height: 44px; border-radius: 12px; } }
+</style>

@@ -1,0 +1,30 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  href: string;
+}
+
+const { title, description, href } = Astro.props;
+---
+
+<a class="project-card" href={href} target="_blank" rel="noreferrer">
+  <span class="project-card-marker" aria-hidden="true"></span>
+  <span class="project-card-copy">
+    <strong>{title}</strong>
+    <span>{description}</span>
+    <span class="project-card-link">Ver proyecto en el sitio oficial <span aria-hidden="true">↗</span></span>
+  </span>
+</a>
+
+<style>
+  .project-card { display: flex; align-items: flex-start; gap: 17px; padding: 21px 22px; border: 1px solid var(--line); border-radius: 9px; background: white; color: inherit; text-decoration: none; box-shadow: 0 10px 28px #102d5b08; transition: transform .22s, border-color .22s, box-shadow .22s; }
+  .project-card:hover { transform: translateY(-2px); border-color: #bdcce0; box-shadow: 0 15px 34px #102d5b12; }
+  .project-card-marker { flex: 0 0 auto; width: 11px; height: 11px; margin-top: 5px; border: 2px solid var(--blue); border-radius: 3px; background: var(--blue-soft); }
+  .project-card:nth-child(2) .project-card-marker { border-color: var(--red); background: #fbf1f2; }
+  .project-card-copy { display: grid; gap: 7px; }
+  .project-card-copy strong { color: var(--navy); font: 700 1rem/1.4 var(--font-display); }
+  .project-card-copy > span:nth-child(2) { color: var(--muted); font-size: .83rem; line-height: 1.6; }
+  .project-card-link { color: var(--blue); font-size: .75rem; font-weight: 700; }
+  .project-card-link > span { margin-left: 5px; }
+</style>

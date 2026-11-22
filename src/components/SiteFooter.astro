@@ -1,0 +1,61 @@
+---
+import { institutionalContact } from '../data/institutional';
+
+const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
+---
+
+<footer class="site-footer">
+  <div class="container footer-main">
+    <div class="footer-brand">
+      <a class="brand" href={base} aria-label="ESCJ CONECTA, inicio">
+        <img class="footer-crest" src={`${base}images/escudo-oficial.png`} alt="" />
+        <span class="brand-copy"><strong>ESCJ CONECTA</strong><small>UE-ESCJ CBA</small></span>
+      </a>
+      <p class="footer-tagline">Conectando educación, innovación y comunidad.</p>
+      <span class="footer-identity">Unidad Educativa Esclavas del Sagrado Corazón de Jesús</span>
+    </div>
+    <div class="footer-links">
+      <span class="footer-heading">Enlace rápido</span>
+      <a href="#colegio">Conoce nuestro colegio</a>
+      <a href="#innovacion">Innovación ESCJ</a>
+      <a href="#noticias">Noticias y novedades</a>
+      <a href="#agenda">Próximas actividades</a>
+      <a href="#modelos-mun">Modelos de Naciones Unidas</a>
+    </div>
+    <div class="footer-links">
+      <span class="footer-heading">Modelos de Naciones Unidas</span>
+      <span class="footer-program">ESCJMUN</span>
+      <a href="https://www.ue-escjcba.edu.bo/minimun/" target="_blank" rel="noreferrer">Mini ESCJMUN <span aria-hidden="true">↗</span></a>
+    </div>
+    <div class="footer-links footer-contact">
+      <span class="footer-heading">Contactos</span>
+      <address>{institutionalContact.address}</address>
+      <a href={`mailto:${institutionalContact.email}`}>{institutionalContact.email}</a>
+      <a href={`tel:${institutionalContact.mobileHref}`}>{institutionalContact.mobile}</a>
+      <a href={`tel:${institutionalContact.landlineHref}`}>{institutionalContact.landline}</a>
+    </div>
+  </div>
+  <div class="footer-bottom"><div class="container"><span>© Unidad Educativa Esclavas del Sagrado Corazón de Jesús</span><span><a href="https://www.ue-escjcba.edu.bo/" target="_blank" rel="noreferrer">Sitio institucional <span aria-hidden="true">↗</span></a> · ESCJ CONECTA</span></div></div>
+</footer>
+
+<style>
+  .site-footer { position: relative; overflow: hidden; padding-top: 62px; background: var(--navy); color: white; }
+  .site-footer::before { position: absolute; top: 0; left: max(24px, calc((100vw - 1160px) / 2)); width: 68px; height: 4px; background: var(--red); content: ''; }
+  .footer-main { display: grid; grid-template-columns: 1.1fr .85fr 1fr 1.35fr; gap: 34px; padding-bottom: 50px; }
+  .site-footer .brand { color: white; }
+  .footer-crest { width: 42px; height: 42px; object-fit: contain; }
+  .site-footer .brand-copy small, .footer-brand p, .footer-links a, .footer-program { color: #c5d0df; }
+  .footer-brand p { max-width: 290px; margin: 18px 0 8px; line-height: 1.7; font-size: .9rem; }
+  .footer-identity { display: block; max-width: 280px; color: #91a5bf; font-size: .76rem; line-height: 1.6; }
+  .footer-links { display: flex; flex-direction: column; align-items: flex-start; gap: 13px; font-size: .84rem; }
+  .footer-heading { margin-bottom: 4px; color: white; font-size: .78rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
+  .footer-links a { text-decoration: none; }
+  .footer-program { font-size: .84rem; }
+  .footer-links a:hover { color: white; text-decoration: underline; }
+  .footer-contact address { max-width: 260px; color: #c5d0df; font-size: .82rem; font-style: normal; line-height: 1.65; }
+  .footer-bottom { border-top: 1px solid #ffffff25; color: #c5d0df; font-size: .73rem; }
+  .footer-bottom a { color: inherit; text-underline-offset: 3px; }
+  .footer-bottom a:hover { color: white; }
+  .footer-bottom .container { display: flex; justify-content: space-between; gap: 16px; padding: 18px 0; }
+  @media (max-width: 920px) { .footer-main { grid-template-columns: 1fr 1fr; gap: 34px 24px; } .footer-brand { grid-column: 1 / -1; } .footer-contact { grid-column: 1 / -1; } .footer-bottom .container { flex-direction: column; } }
+</style>

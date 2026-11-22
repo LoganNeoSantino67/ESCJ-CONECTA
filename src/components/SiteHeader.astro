@@ -1,0 +1,56 @@
+---
+const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
+
+const links = [
+  { label: 'El colegio', href: '#colegio' },
+  { label: 'Admisiones', href: '#admisiones' },
+  { label: 'Innovación', href: '#innovacion' },
+  { label: 'Modelos MUN', href: '#modelos-mun' },
+  { label: 'Pastoral', href: '#pastoral' },
+  { label: 'Noticias', href: '#noticias' },
+  { label: 'Agenda', href: '#agenda' },
+];
+---
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href={base} aria-label="ESCJ CONECTA, inicio">
+      <img class="brand-crest" src={`${base}images/escudo-oficial.png`} alt="Escudo oficial de la Unidad Educativa Esclavas del Sagrado Corazón de Jesús" />
+      <span class="brand-copy"><strong>ESCJ CONECTA</strong><small>UE-ESCJ CBA</small></span>
+    </a>
+    <button class="menu-toggle" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="main-navigation">
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="main-nav" id="main-navigation" aria-label="Navegación principal">
+      {links.map((link) => <a href={link.href}>{link.label}</a>)}
+      <a class="nav-contact" href="#contacto">Contacto <span aria-hidden="true">↗</span></a>
+    </nav>
+  </div>
+</header>
+
+<style>
+  .site-header { position: relative; z-index: 10; background: #ffffffed; border-bottom: 1px solid #e9eef4; backdrop-filter: blur(14px); }
+  .header-inner { display: flex; align-items: center; justify-content: space-between; min-height: 82px; }
+  .brand { display: flex; align-items: center; gap: 11px; color: var(--navy); text-decoration: none; }
+  .brand-crest { width: 43px; height: 43px; object-fit: contain; }
+  .brand-copy { display: grid; gap: 3px; }
+  .brand-copy strong { font: 800 .95rem var(--font-display); letter-spacing: .01em; }
+  .brand-copy small { color: var(--muted); font-size: .68rem; letter-spacing: .08em; }
+  .main-nav { display: flex; align-items: center; gap: clamp(15px, 2vw, 27px); }
+  .main-nav a { position: relative; color: #43536a; text-decoration: none; font-size: .82rem; font-weight: 600; transition: color .2s; }
+  .main-nav a:hover { color: var(--red); }
+  .main-nav .nav-contact { display: inline-flex; align-items: center; gap: 9px; padding: 11px 15px; border: 1px solid var(--navy); border-radius: 5px; background: var(--navy); color: white; transition: background .2s, transform .2s; }
+  .main-nav .nav-contact:hover { background: var(--blue); color: white; transform: translateY(-1px); }
+  .menu-toggle { display: none; }
+  @media (max-width: 880px) {
+    .header-inner { min-height: 72px; }
+    .brand-crest { width: 38px; height: 38px; }
+    .menu-toggle { display: grid; gap: 5px; width: 42px; height: 42px; place-content: center; border: 1px solid var(--line); border-radius: 6px; background: white; cursor: pointer; transition: background .2s, border-color .2s; }
+    .menu-toggle:hover { border-color: #a9bbcf; background: var(--surface); }
+    .menu-toggle span { display: block; width: 19px; height: 2px; background: var(--navy); }
+    .main-nav { position: absolute; top: 100%; right: 0; left: 0; display: none; align-items: stretch; gap: 0; padding: 8px 24px 18px; border-bottom: 1px solid var(--line); background: white; box-shadow: 0 12px 20px #102d5b12; }
+    .main-nav.is-open { display: flex; flex-direction: column; }
+    .main-nav a { padding: 13px 4px; }
+    .main-nav .nav-contact { justify-content: center; margin-top: 7px; }
+  }
+</style>

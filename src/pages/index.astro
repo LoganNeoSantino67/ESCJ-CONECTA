@@ -1,0 +1,271 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import EmptyStateCard from '../components/EmptyStateCard.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import ProgramCard from '../components/ProgramCard.astro';
+import ContactSection from '../components/ContactSection.astro';
+import { extracurricularPrograms, institutionalProjects, officialLinks, pastoralExperiences, schoolIntroduction } from '../data/institutional';
+
+const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
+
+const quickLinks = [
+  { number: '01', title: 'Conoce nuestro colegio', text: 'Una mirada a nuestra comunidad educativa.', href: '#colegio' },
+  { number: '02', title: 'Admisiones e inscripciones', text: 'Postulación 2027.', href: officialLinks.applications2027, external: true },
+  { number: '03', title: 'Innovación ESCJ', text: 'Proyectos e iniciativas estudiantiles.', href: '#innovacion' },
+  { number: '04', title: 'Calendario de actividades', text: 'Consulta las próximas actividades.', href: '#agenda' },
+];
+---
+
+<BaseLayout title="Inicio" description="ESCJ CONECTA: conectando educación, innovación y comunidad.">
+  <section class="hero">
+    <div class="container hero-grid">
+      <div class="hero-copy">
+        <span class="eyebrow">Unidad Educativa Esclavas del Sagrado Corazón de Jesús</span>
+        <h1>Conectando educación,<br /><span>innovación y comunidad</span></h1>
+        <p class="hero-lead">Un espacio para acercar la vida escolar a estudiantes, familias y comunidad.</p>
+        <div class="hero-actions">
+          <a class="button" href="#colegio">Conoce nuestro colegio <span aria-hidden="true">→</span></a>
+          <a class="text-link" href="#secciones">Explorar secciones <span aria-hidden="true">↓</span></a>
+        </div>
+        <div class="hero-rule"><span></span><span></span><span></span></div>
+      </div>
+      <div class="hero-visual">
+        <div class="visual-grid" aria-hidden="true"></div>
+        <div class="visual-topline"><span>ESCJ CONECTA</span><span>UE-ESCJ CBA</span></div>
+        <div class="visual-stage"><div class="crest-placeholder"><img class="official-crest" src={`${base}images/escudo-oficial.png`} alt="" /><strong>Unidad Educativa Esclavas del Sagrado Corazón de Jesús</strong></div></div>
+        <div class="visual-caption"><span class="caption-line"></span><span>Conectando educación, innovación y comunidad</span></div>
+      </div>
+    </div>
+    <div class="hero-bottom-band" aria-hidden="true"></div>
+  </section>
+
+  <section class="section quick-section" id="secciones">
+    <div class="container">
+      <SectionHeading eyebrow="Explora ESCJ" title="Todo lo que nos conecta" description="Accede a la información y los espacios principales de nuestra comunidad educativa." />
+      <div class="quick-grid">
+        {quickLinks.map((item) => (
+          <a class="quick-card" href={item.href} id={item.id} target={item.external ? '_blank' : undefined} rel={item.external ? 'noreferrer' : undefined}>
+            <span class="quick-number">{item.number}</span>
+            <span class="quick-title">{item.title}</span>
+            <span class="quick-text">{item.text}</span>
+            <span class="quick-arrow" aria-hidden="true">↗</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="admissions-cta" id="admisiones">
+    <div class="container admissions-inner">
+      <div><span class="eyebrow">Admisiones</span><h2>Postulación 2027</h2><p>Consulta la información publicada por el colegio para postular.</p></div>
+      <a class="button button--light" href={officialLinks.applications2027} target="_blank" rel="noreferrer">Ver información oficial <span aria-hidden="true">↗</span></a>
+    </div>
+  </section>
+
+  <section class="section intro-section" id="colegio">
+    <div class="container intro-grid">
+      <div class="intro-art"><div class="art-frame"><span class="art-tag">ESCJ CONECTA</span><div class="art-placeholder"><img class="official-photo" src={`${base}images/about.jpg`} alt="Persona sosteniendo libros" /><span class="photo-note">Imagen publicada en el sitio institucional</span></div><span class="art-accent"></span></div></div>
+      <div class="intro-copy">
+        <SectionHeading eyebrow="Bienvenidos" title={schoolIntroduction.title} description={schoolIntroduction.description} />
+        <div class="intro-actions"><a class="button button--outline" href={officialLinks.schoolHistory} target="_blank" rel="noreferrer">Conoce nuestra historia <span aria-hidden="true">↗</span></a><a class="inline-link" href={officialLinks.educationalProposal} target="_blank" rel="noreferrer">Propuesta educativa <span aria-hidden="true">↗</span></a></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section news-section" id="noticias">
+    <div class="container">
+      <div class="section-topline"><SectionHeading eyebrow="Actualidad" title="Noticias y novedades" description="Las novedades institucionales se publicarán aquí cuando se disponga de información confirmada." /><a class="subtle-link" href="#noticias">Ver novedades <span aria-hidden="true">→</span></a></div>
+      <div class="news-feature">
+        <div class="news-feature-label"><span class="news-dot" aria-hidden="true"></span><span>Actualidad ESCJ</span></div>
+        <EmptyStateCard eyebrow="Noticias institucionales" title="Próximamente" description="Aún no hay noticias confirmadas para mostrar." icon="↗" />
+      </div>
+    </div>
+  </section>
+
+  <section class="section calendar-section" id="agenda">
+    <div class="container calendar-grid">
+      <div><SectionHeading eyebrow="Agenda escolar" title="Próximas actividades" description="Consulta el calendario académico 2026 publicado por el colegio." /><div class="activity-board"><div class="activity-board-top"><span>AGENDA ESCOLAR</span><span aria-hidden="true">▦</span></div><a class="calendar-document" href={officialLinks.academicCalendarPdf} target="_blank" rel="noreferrer"><span class="calendar-file-type">PDF</span><span class="calendar-document-copy"><strong>Calendario académico 2026</strong><span>Documento oficial publicado por el colegio.</span></span><span class="calendar-document-arrow" aria-hidden="true">↗</span></a><a class="calendar-link" href={officialLinks.academicCalendar} target="_blank" rel="noreferrer">Ver página del calendario <span aria-hidden="true">↗</span></a></div></div>
+      <aside class="calendar-note"><span class="calendar-mark" aria-hidden="true">01</span><strong>Tu punto de referencia</strong><p>Este espacio reunirá las fechas y actividades institucionales confirmadas.</p><a href="#contacto">Contacto institucional <span aria-hidden="true">→</span></a></aside>
+    </div>
+  </section>
+
+  <section class="section innovation-section" id="innovacion">
+    <div class="container innovation-grid">
+      <div><SectionHeading eyebrow="Ideas que inspiran" title="Innovación ESCJ" description="La propuesta pedagógica del colegio presenta iniciativas ambientales y de participación." /><p class="supporting-copy">Conoce la información publicada por la Unidad Educativa en sus páginas oficiales.</p></div>
+      <div class="project-list" id="proyectos-estudiantiles">{institutionalProjects.map((project) => <ProjectCard {...project} />)}</div>
+    </div>
+  </section>
+
+  <section class="section mun-section" id="modelos-mun">
+    <div class="container">
+      <div class="mun-heading"><SectionHeading eyebrow="Diálogo y participación" title="Modelos de Naciones Unidas" description="Conoce los espacios de Modelos de Naciones Unidas vinculados a la comunidad ESCJ." /></div>
+      <div class="mun-grid">
+        <article class="mun-card mun-card--escjmun"><div class="mun-logo-placeholder mun-logo-image mun-logo-image--escj" role="img" aria-label="Logotipo oficial de ESCJMUN"><img src={`${base}images/escjmun-logo-oficial.png`} alt="" /></div><div class="mun-card-content"><span class="mun-program-tag">ESCJMUN</span><h3>ESCJMUN</h3><p>Modelo de Naciones Unidas de la comunidad ESCJ que se celebra cada año.</p></div></article>
+        <article class="mun-card mun-card--mini"><div class="mun-logo-placeholder mun-logo-image" role="img" aria-label="Logotipo oficial de Mini ESCJMUN 2026"><img src={`${base}images/mini-escjmun-logo-oficial.png`} alt="" /></div><div class="mun-card-content"><span class="mun-program-tag">MINI ESCJMUN</span><h3>Mini ESCJMUN</h3><p>Inició en 2026. Una experiencia para aprender a dialogar, investigar y construir soluciones en comunidad.</p><a href="https://www.ue-escjcba.edu.bo/minimun/" target="_blank" rel="noreferrer">Ir al sitio oficial <span aria-hidden="true">↗</span></a></div></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section pastoral-section" id="pastoral">
+    <div class="container">
+      <SectionHeading eyebrow="Formación y comunidad" title="Pastoral y espacios extracurriculares" description="Conoce algunas experiencias de pastoral y espacios de formación que el colegio presenta en sus páginas oficiales." />
+      <h3 class="program-group-title">Experiencias de pastoral</h3>
+      <div class="program-grid">
+        {pastoralExperiences.map((item) => <ProgramCard title={item.title} description={item.description} href={item.href} label="Pastoral" image={item.image} imageAlt={item.imageAlt} video={item.video} />)}
+      </div>
+      <h3 class="program-group-title program-group-title--second">Espacios de formación extracurricular</h3>
+      <div class="program-grid program-grid--extracurricular">
+        {extracurricularPrograms.map((item) => <ProgramCard title={item.title} description={item.description} href={item.href} label={item.audience} image={item.image} imageAlt={item.imageAlt} images={item.images} />)}
+      </div>
+    </div>
+  </section>
+
+  <section class="closing-cta"><div class="container closing-inner"><div><span class="eyebrow">ESCJ CONECTA</span><h2>Un espacio para encontrarnos.</h2></div><a class="button button--light" href="#secciones">Explorar el portal <span aria-hidden="true">→</span></a></div></section>
+  <ContactSection />
+</BaseLayout>
+
+<style>
+  .hero { position: relative; overflow: hidden; background: radial-gradient(ellipse at 86% 48%, #e8eff7 0%, transparent 43%), linear-gradient(115deg, #fff 0%, #f7f9fc 62%, #eff4f9 100%); }
+  .hero-grid { position: relative; z-index: 1; display: grid; grid-template-columns: 1.08fr .92fr; align-items: center; gap: 62px; min-height: 590px; padding-top: 44px; padding-bottom: 62px; }
+  .hero-copy { padding: 24px 0; }
+  .hero-copy .eyebrow { max-width: 520px; line-height: 1.6; }
+  .hero h1 { max-width: 680px; margin: 22px 0 18px; color: var(--navy); font: 800 clamp(2.8rem, 5.3vw, 4.8rem)/1.04 var(--font-display); letter-spacing: -.068em; }
+  .hero h1 span { color: var(--blue); }
+  .hero-lead { max-width: 510px; margin: 0; color: var(--muted); font-size: 1.08rem; line-height: 1.75; }
+  .hero-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 22px; margin-top: 29px; }
+  .text-link, .subtle-link { color: var(--blue); text-decoration: none; font-size: .88rem; font-weight: 700; }
+  .text-link span, .subtle-link span { margin-left: 7px; }
+  .hero-rule { display: flex; gap: 7px; margin-top: 52px; }
+  .hero-rule span { width: 34px; height: 3px; background: #c7d2e0; }
+  .hero-rule span:first-child { width: 52px; background: var(--red); }
+  .hero-visual { position: relative; display: flex; min-height: 425px; flex-direction: column; justify-content: space-between; padding: 23px; overflow: hidden; border: 1px solid #d6e0eb; border-radius: 12px; background: linear-gradient(145deg, #e5edf6 0%, #f9fbfd 48%, #dbe5f0 100%); box-shadow: 0 28px 70px #102d5b1b; }
+  .hero-visual::before { position: absolute; right: -74px; bottom: -108px; width: 280px; height: 280px; border: 1px solid #1e4e911c; border-radius: 50%; box-shadow: 0 0 0 30px #1e4e9107, 0 0 0 60px #1e4e9106; content: ''; }
+  .visual-grid { position: absolute; inset: 0; opacity: .28; background-image: linear-gradient(#a9bbcf40 1px, transparent 1px), linear-gradient(90deg, #a9bbcf40 1px, transparent 1px); background-size: 36px 36px; mask-image: linear-gradient(135deg, #000 0%, transparent 72%); }
+  .visual-stage { position: relative; display: grid; flex: 1; place-items: center; }
+  .visual-topline, .visual-caption { display: flex; align-items: center; justify-content: space-between; color: #61728a; font-size: .66rem; font-weight: 700; letter-spacing: .13em; }
+  .crest-placeholder { display: flex; align-items: center; flex-direction: column; justify-content: center; align-self: center; width: min(290px, 82%); min-height: 245px; padding: 24px; border: 1px solid #ffffffb8; border-radius: 12px; background: #ffffffdf; box-shadow: 0 20px 45px #102d5b16; text-align: center; backdrop-filter: blur(8px); }
+  .official-crest { display: block; width: min(178px, 70%); height: 150px; object-fit: contain; }
+  .crest-placeholder strong { max-width: 225px; margin-top: 12px; color: var(--navy); font: 700 .88rem/1.4 var(--font-display); }
+  .visual-caption { justify-content: flex-start; gap: 10px; letter-spacing: .02em; }
+  .caption-line { width: 25px; height: 2px; background: var(--red); }
+  .hero-bottom-band { position: absolute; right: -35px; bottom: 0; width: 39%; height: 7px; background: linear-gradient(90deg, var(--red) 0 28%, var(--blue) 28%); }
+  .quick-section { padding-top: 78px; }
+  .quick-grid { display: grid; grid-template-columns: repeat(4, 1fr); border: 1px solid var(--line); border-radius: 7px; overflow: hidden; }
+  .quick-card { position: relative; display: flex; min-height: 190px; flex-direction: column; align-items: flex-start; padding: 25px 23px; border-right: 1px solid var(--line); text-decoration: none; transition: background .25s, transform .25s, box-shadow .25s; }
+  .quick-card:last-child { border-right: 0; }
+  .quick-card:hover { z-index: 1; background: var(--blue-soft); box-shadow: 0 10px 24px #102d5b0d; transform: translateY(-3px); }
+  .quick-number { color: var(--red); font-size: .72rem; font-weight: 800; letter-spacing: .1em; }
+  .quick-title { margin-top: 19px; color: var(--navy); font: 700 1rem/1.4 var(--font-display); }
+  .quick-text { margin-top: 7px; color: var(--muted); font-size: .8rem; line-height: 1.55; }
+  .quick-arrow { position: absolute; right: 21px; bottom: 17px; color: var(--blue); font-size: 1rem; }
+  .intro-section { background: var(--surface); }
+  .intro-grid { display: grid; grid-template-columns: .95fr 1.05fr; align-items: center; gap: 90px; }
+  .intro-art { padding: 16px 0 16px 17px; }
+  .art-frame { position: relative; min-height: 335px; padding: 16px; border-radius: 10px; background: linear-gradient(145deg, #dce6f0, #edf2f7); box-shadow: 0 20px 50px #102d5b10; }
+  .art-tag { position: absolute; top: 29px; left: 29px; color: var(--navy); font-size: .66rem; font-weight: 800; letter-spacing: .12em; }
+  .art-placeholder { position: relative; display: flex; min-height: 300px; flex-direction: column; align-items: center; justify-content: flex-end; padding: 18px; overflow: hidden; background: #edf2f7; text-align: center; }
+  .official-photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; }
+  .photo-note { position: relative; z-index: 1; padding: 8px 12px; border: 1px solid #ffffff80; border-radius: 20px; background: #ffffffdf; color: var(--navy); font-size: .67rem; font-weight: 700; backdrop-filter: blur(8px); }
+  .intro-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 20px; }
+  .inline-link, .calendar-link { color: var(--blue); text-decoration: none; font-size: .86rem; font-weight: 700; }
+  .inline-link:hover, .calendar-link:hover { color: var(--red); }
+  .inline-link span { margin-left: 6px; }
+  .art-accent { position: absolute; z-index: 1; right: -17px; bottom: -16px; width: 75px; height: 75px; border-right: 4px solid var(--red); border-bottom: 4px solid var(--red); }
+  .intro-copy .section-heading { margin-bottom: 24px; }
+  .section-topline { display: flex; justify-content: space-between; align-items: flex-end; gap: 25px; }
+  .section-topline .section-heading { margin-bottom: 30px; }
+  .subtle-link { margin-bottom: 36px; white-space: nowrap; }
+  .news-feature { position: relative; padding: 28px; border: 1px solid #e0e7ef; border-radius: 11px; background: linear-gradient(125deg, #f4f7fb, #fff 60%); }
+  .news-feature-label { display: flex; align-items: center; gap: 9px; margin-bottom: 18px; color: var(--navy); font-size: .7rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
+  .news-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--red); box-shadow: 0 0 0 4px #c735431a; }
+  .calendar-section { background: #f2f6fa; }
+  .calendar-grid { display: grid; grid-template-columns: 1fr 290px; align-items: center; gap: 70px; }
+  .activity-board { padding: 22px; border: 1px solid #dce5ee; border-radius: 10px; background: white; box-shadow: 0 18px 42px #102d5b0b; }
+  .activity-board-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 15px; color: var(--blue); font-size: .65rem; font-weight: 800; letter-spacing: .13em; }
+  .activity-board-top span:last-child { display: grid; width: 33px; height: 33px; place-items: center; border-radius: 8px; background: var(--blue-soft); font-size: 1rem; }
+  .calendar-link { display: inline-flex; align-items: center; gap: 8px; margin: 18px 4px 0; }
+  .calendar-note { display: flex; flex-direction: column; align-items: flex-start; padding: 28px; border: 1px solid #dfe7f0; border-top: 3px solid var(--red); border-radius: 9px; background: white; box-shadow: 0 18px 40px #102d5b0b; }
+  .calendar-mark { display: grid; width: 43px; height: 43px; place-items: center; border-radius: 10px; background: var(--blue-soft); color: var(--blue); font: 800 .8rem var(--font-display); }
+  .calendar-note strong { margin-top: 18px; color: var(--navy); font: 700 1.05rem var(--font-display); }
+  .calendar-note p { margin: 9px 0 19px; color: var(--muted); font-size: .86rem; line-height: 1.65; }
+  .calendar-note a, .mun-card-content a { color: var(--blue); text-decoration: none; font-size: .82rem; font-weight: 700; }
+  .calendar-note a:hover, .mun-card-content a:hover { text-decoration: underline; }
+  .calendar-note a span { margin-left: 8px; }
+  .innovation-grid { display: grid; grid-template-columns: 1fr .85fr; align-items: center; gap: 90px; }
+  .innovation-grid .section-heading { margin-bottom: 16px; }
+  .supporting-copy { margin: 0 0 23px; color: var(--muted); font-size: .88rem; line-height: 1.7; }
+  .project-list { display: grid; gap: 13px; }
+  .mun-section { background: var(--surface); }
+  .mun-heading { max-width: 700px; }
+  .mun-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+  .mun-card { display: grid; grid-template-columns: .8fr 1.2fr; min-height: 250px; overflow: hidden; border: 1px solid var(--line); border-radius: 10px; background: white; box-shadow: 0 15px 36px #102d5b09; transition: transform .25s, box-shadow .25s; }
+  .mun-card:hover { box-shadow: 0 22px 45px #102d5b14; transform: translateY(-3px); }
+  .mun-logo-placeholder { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 13px; padding: 20px; background: #edf2f7; color: #63738a; text-align: center; }
+  .mun-logo-image { background: #fff; }
+  .mun-logo-image img { display: block; width: min(100%, 190px); max-height: 185px; object-fit: contain; }
+  .mun-logo-placeholder strong { max-width: 145px; font-size: .72rem; font-weight: 500; line-height: 1.5; }
+  .logo-placeholder-rule { width: 30px; height: 3px; background: var(--blue); }
+  .mun-card--mini .mun-logo-placeholder { border-bottom: 3px solid var(--red); }
+  .mun-program-tag { display: inline-flex; align-items: center; gap: 8px; color: var(--blue); font-size: .65rem; font-weight: 800; letter-spacing: .12em; }
+  .mun-program-tag::before { width: 7px; height: 7px; border-radius: 2px; background: var(--blue); content: ''; }
+  .mun-card--mini .mun-program-tag { color: #a62e3c; }
+  .mun-card--mini .mun-program-tag::before { background: var(--red); }
+  .mun-card-content { display: flex; flex-direction: column; align-items: flex-start; justify-content: center; padding: 25px; }
+  .mun-card-content h3 { margin: 10px 0 7px; color: var(--navy); font: 700 1.3rem var(--font-display); }
+  .mun-card-content p { margin: 0 0 16px; color: var(--muted); font-size: .83rem; }
+  .mun-card-content a span { margin-left: 7px; }
+  .pastoral-section { background: #fff; }
+  .pastoral-section > .container > .section-heading { max-width: 760px; }
+  .program-group-title { margin: 0 0 18px; color: var(--navy); font: 700 1.15rem var(--font-display); }
+  .program-group-title--second { margin-top: 44px; }
+  .program-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+  .closing-cta { padding: 49px 0; background: var(--blue); color: white; }
+  .admissions-cta { padding: 36px 0; background: var(--navy); color: white; }
+  .admissions-inner { display: flex; align-items: center; justify-content: space-between; gap: 25px; }
+  .admissions-inner .eyebrow { color: #e7a0a6; }
+  .admissions-inner h2 { margin: 9px 0 5px; color: white; font: 700 clamp(1.4rem, 2.5vw, 1.9rem) var(--font-display); }
+  .admissions-inner p { margin: 0; color: #c5d0df; font-size: .86rem; line-height: 1.6; }
+  .calendar-document { display: flex; align-items: center; gap: 16px; padding: 19px; border: 1px solid var(--line); border-radius: 8px; background: white; color: inherit; text-decoration: none; transition: border-color .2s, transform .2s, box-shadow .2s; }
+  .calendar-document:hover { transform: translateY(-2px); border-color: #b4c4d7; box-shadow: 0 12px 28px #102d5b0d; }
+  .calendar-file-type { display: grid; flex: 0 0 auto; width: 47px; height: 53px; place-items: center; border: 1px solid #efc3c8; border-radius: 7px; background: #fff7f8; color: #a62e3c; font-size: .68rem; font-weight: 800; }
+  .calendar-document-copy { display: grid; flex: 1; gap: 5px; }
+  .calendar-document-copy strong { color: var(--navy); font: 700 .95rem var(--font-display); }
+  .calendar-document-copy > span { color: var(--muted); font-size: .78rem; line-height: 1.5; }
+  .calendar-document-arrow { color: var(--blue); font-weight: 700; }
+  .closing-inner { display: flex; align-items: center; justify-content: space-between; gap: 25px; }
+  .closing-inner .eyebrow { color: #d8e3f0; }
+  .closing-inner h2 { margin: 11px 0 0; font: 700 clamp(1.5rem, 3vw, 2.2rem) var(--font-display); letter-spacing: -.04em; }
+  .button--light { border-color: white; background: white; color: var(--navy); }
+  .button--light:hover { border-color: white; background: #e9eef5; color: var(--navy); }
+  @media (max-width: 900px) {
+    .hero-grid { gap: 34px; }
+    .quick-grid { grid-template-columns: repeat(2, 1fr); }
+    .quick-card:nth-child(2) { border-right: 0; }
+    .quick-card:nth-child(-n+2) { border-bottom: 1px solid var(--line); }
+    .intro-grid, .innovation-grid { gap: 45px; }
+    .calendar-grid { gap: 35px; }
+    .mun-grid { grid-template-columns: 1fr; }
+    .program-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+  @media (max-width: 650px) {
+    .hero-grid { grid-template-columns: 1fr; gap: 28px; padding-top: 45px; }
+    .hero h1 { font-size: clamp(2.65rem, 12vw, 3.5rem); }
+    .hero-visual { min-height: 300px; }
+    .hero-rule { margin-top: 34px; }
+    .quick-grid { grid-template-columns: 1fr 1fr; }
+    .quick-card { min-height: 185px; padding: 20px 16px; }
+    .quick-title { font-size: .92rem; }
+    .intro-grid, .innovation-grid, .calendar-grid { grid-template-columns: 1fr; gap: 35px; }
+    .intro-art { padding-left: 8px; }
+    .art-frame { min-height: 270px; }
+    .art-placeholder { min-height: 240px; }
+    .section-topline { display: block; }
+    .subtle-link { display: inline-block; margin: -10px 0 25px; }
+    .calendar-note { margin-top: 0; }
+    .mun-card { grid-template-columns: 1fr; }
+    .program-grid { grid-template-columns: 1fr; }
+    .mun-logo-placeholder { min-height: 140px; }
+    .closing-inner, .admissions-inner { align-items: flex-start; flex-direction: column; }
+  }
+</style>

@@ -1,0 +1,64 @@
+---
+import SectionHeading from './SectionHeading.astro';
+import { institutionalContact } from '../data/institutional';
+
+const mapQuery = encodeURIComponent('Unidad Educativa Esclavas del Sagrado Corazón de Jesús, Zona la Muyurina, Barrio Irlandés, Av. Villazón S/N km 0.5, Cochabamba, Bolivia');
+const mapHref = `https://www.google.com/maps/search/?api=1&query=${mapQuery}`;
+---
+
+<section class="section contact-section" id="contacto">
+  <div class="container">
+    <SectionHeading eyebrow="Estamos para atenderte" title="Contáctenos" description="Encuentra los datos de contacto institucional y la ubicación del colegio." />
+    <div class="contact-grid">
+      <div class="contact-details">
+        <h3>Póngase en contacto</h3>
+        <a class="contact-item" href={mapHref} target="_blank" rel="noreferrer">
+          <span class="contact-icon" aria-hidden="true">⌖</span>
+          <span><strong>Dirección</strong><span>{institutionalContact.address}</span></span>
+        </a>
+        <a class="contact-item" href={`tel:${institutionalContact.landlineHref}`}>
+          <span class="contact-icon" aria-hidden="true">☎</span>
+          <span><strong>Teléfonos</strong><span>{institutionalContact.landline}</span></span>
+        </a>
+        <a class="contact-item" href={`tel:${institutionalContact.mobileHref}`}>
+          <span class="contact-icon" aria-hidden="true">▯</span>
+          <span><strong>Celular</strong><span>{institutionalContact.mobile}</span></span>
+        </a>
+        <a class="contact-item" href={`mailto:${institutionalContact.email}`}>
+          <span class="contact-icon" aria-hidden="true">✉</span>
+          <span><strong>Email</strong><span>{institutionalContact.email}</span></span>
+        </a>
+      </div>
+      <div class="map-frame">
+        <iframe
+          title="Mapa de ubicación de la Unidad Educativa Esclavas del Sagrado Corazón de Jesús en Cochabamba"
+          src={`https://www.google.com/maps?q=${mapQuery}&output=embed`}
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          allowfullscreen
+        ></iframe>
+        <a class="map-open" href={mapHref} target="_blank" rel="noreferrer">Abrir ubicación en Google Maps <span aria-hidden="true">↗</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .contact-section { background: #fff; }
+  .contact-section :global(.section-heading) { margin-inline: auto; text-align: center; }
+  .contact-section :global(.eyebrow) { justify-content: center; }
+  .contact-grid { display: grid; grid-template-columns: .8fr 1.2fr; gap: 56px; align-items: stretch; }
+  .contact-details { display: grid; align-content: start; gap: 17px; }
+  .contact-details h3 { margin: 0 0 2px; color: var(--navy); font: 700 1.12rem var(--font-display); }
+  .contact-item { display: grid; grid-template-columns: 56px 1fr; gap: 16px; align-items: center; color: inherit; text-decoration: none; }
+  .contact-item > span:last-child { display: grid; gap: 6px; }
+  .contact-item strong { color: var(--navy); font: 700 1rem var(--font-display); }
+  .contact-item > span:last-child > span { color: var(--muted); font-size: .88rem; line-height: 1.6; overflow-wrap: anywhere; }
+  .contact-icon { display: grid; width: 56px; height: 56px; place-items: center; background: var(--blue); color: white; font-size: 1.35rem; }
+  .contact-item:hover strong { color: var(--red); }
+  .map-frame { position: relative; min-height: 390px; overflow: hidden; border: 1px solid var(--line); background: var(--surface); }
+  .map-frame iframe { display: block; width: 100%; height: 100%; min-height: 390px; border: 0; }
+  .map-open { position: absolute; right: 14px; bottom: 14px; padding: 11px 14px; border-radius: 5px; background: var(--blue); color: white; text-decoration: none; font-size: .78rem; font-weight: 700; box-shadow: 0 5px 15px #102d5b28; }
+  .map-open:hover { background: var(--navy); }
+  @media (max-width: 760px) { .contact-grid { grid-template-columns: 1fr; gap: 32px; } .map-frame, .map-frame iframe { min-height: 310px; } }
+</style>

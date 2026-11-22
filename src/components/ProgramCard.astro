@@ -1,0 +1,58 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  href: string;
+  label?: string;
+  image?: string;
+  imageAlt?: string;
+  images?: { src: string; alt: string }[];
+  video?: string;
+}
+
+const { title, description, href, label, image, imageAlt, images = [], video } = Astro.props;
+const mediaImages = images.length ? images : image ? [{ src: image, alt: imageAlt ?? title }] : [];
+const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
+const assetUrl = (src: string) => `${base}${src.startsWith('/') ? src.slice(1) : src}`;
+---
+
+<article class="program-card">
+  {video ? (
+    <div class="program-card-media program-card-media--video">
+      <video controls preload="metadata" playsinline aria-label={`Video oficial de ${title}`}>
+        <source src={video} type="video/mp4" />
+        Tu navegador no puede reproducir este video.
+      </video>
+    </div>
+  ) : mediaImages.length > 0 ? (
+    <div class:list={["program-card-media", { "program-card-media--pair": mediaImages.length > 1 }]}>
+      {mediaImages.map((item) => <img src={assetUrl(item.src)} alt={item.alt} loading="lazy" />)}
+    </div>
+  ) : null}
+  <div class="program-card-content">
+    <span class="program-card-label">{label ?? 'Pastoral'}</span>
+    <strong>{title}</strong>
+    <span class="program-card-description">{description}</span>
+    <a class="program-card-link" href={href} target="_blank" rel="noreferrer">Ver en el sitio oficial <span aria-hidden="true">↗</span></a>
+  </div>
+</article>
+
+<style>
+  .program-card { display: flex; min-height: 205px; flex-direction: column; overflow: hidden; border: 1px solid var(--line); border-top: 3px solid var(--blue); border-radius: 8px; background: white; color: inherit; box-shadow: 0 12px 30px #102d5b08; transition: transform .22s, box-shadow .22s, border-color .22s; }
+  .program-card:hover { transform: translateY(-3px); border-color: #b9c9dc; box-shadow: 0 18px 36px #102d5b12; }
+  .program-card-media { display: flex; width: 100%; height: 178px; align-items: center; justify-content: center; gap: 10px; padding: 10px; overflow: hidden; background: #f2f5f8; }
+  .program-card-media img { display: block; width: 100%; height: 100%; object-fit: cover; }
+  .program-card-media--pair { gap: 8px; padding: 10px; }
+  .program-card-media--pair img { width: calc(50% - 4px); height: 100%; object-fit: cover; }
+  .program-card-media--video { height: auto; max-height: 190px; aspect-ratio: 16 / 9; padding: 0; background: #101b2c; }
+  .program-card-media video { display: block; width: 100%; height: 100%; object-fit: contain; }
+  .program-card-content { display: flex; flex: 1; flex-direction: column; align-items: flex-start; padding: 20px 22px 22px; }
+  .program-card-label { color: var(--blue); font-size: .65rem; font-weight: 800; letter-spacing: .11em; text-transform: uppercase; }
+  .program-card strong { margin-top: 13px; color: var(--navy); font: 700 1rem/1.45 var(--font-display); }
+  .program-card-description { margin-top: 8px; color: var(--muted); font-size: .8rem; line-height: 1.6; }
+  .program-card-link { display: inline-block; margin-top: auto; padding-top: 16px; color: var(--blue); font-size: .75rem; font-weight: 700; text-decoration: none; }
+  .program-card-link:hover { color: var(--red); text-decoration: underline; text-underline-offset: 3px; }
+  .program-card-link span { margin-left: 5px; }
+  :global(.program-grid--extracurricular) .program-card { border-top-color: var(--red); }
+  :global(.program-grid--extracurricular) .program-card-label { color: #a62e3c; }
+</style>
