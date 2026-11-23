@@ -58,7 +58,7 @@ const quickLinks = [
 
   <section class="section intro-section" id="colegio">
     <div class="container intro-grid">
-      <div class="intro-art"><div class="art-frame"><span class="art-tag">ESCJ CONECTA</span><div class="art-placeholder"><img class="official-photo" src={`${base}images/about.jpg`} alt="Persona sosteniendo libros" /><span class="photo-note">Imagen publicada en el sitio institucional</span></div><span class="art-accent"></span></div></div>
+      <div class="intro-art"><div class="art-frame"><span class="art-tag">ESCJ CONECTA</span><div class="art-placeholder"><img class="official-photo" src={`${base}images/fachada-colegio.jpeg`} alt="Fachada de la Unidad Educativa Esclavas del Sagrado Corazón de Jesús en Cochabamba" /><span class="photo-note">Imagen publicada en el sitio institucional</span></div><span class="art-accent"></span></div></div>
       <div class="intro-copy">
         <SectionHeading eyebrow="Bienvenidos" title={schoolIntroduction.title} description={schoolIntroduction.description} />
         <div class="intro-actions"><a class="button button--outline" href={officialLinks.schoolHistory} target="_blank" rel="noreferrer">Conoce nuestra historia <span aria-hidden="true">↗</span></a><a class="inline-link" href={officialLinks.educationalProposal} target="_blank" rel="noreferrer">Propuesta educativa <span aria-hidden="true">↗</span></a></div>
@@ -109,6 +109,7 @@ const quickLinks = [
       <div class="program-grid">
         {pastoralExperiences.map((item) => <ProgramCard title={item.title} description={item.description} href={item.href} label="Pastoral" image={item.image} imageAlt={item.imageAlt} video={item.video} />)}
       </div>
+      <div class="program-divider" aria-hidden="true"></div>
       <h3 class="program-group-title program-group-title--second">Espacios de formación extracurricular</h3>
       <div class="program-grid program-grid--extracurricular">
         {extracurricularPrograms.map((item) => <ProgramCard title={item.title} description={item.description} href={item.href} label={item.audience} image={item.image} imageAlt={item.imageAlt} images={item.images} />)}
@@ -167,10 +168,10 @@ const quickLinks = [
   .intro-section { background: var(--surface); }
   .intro-grid { display: grid; grid-template-columns: .95fr 1.05fr; align-items: center; gap: 90px; }
   .intro-art { padding: 16px 0 16px 17px; }
-  .art-frame { position: relative; min-height: 335px; padding: 16px; border-radius: 10px; background: linear-gradient(145deg, #dce6f0, #edf2f7); box-shadow: 0 20px 50px #102d5b10; }
+  .art-frame { position: relative; padding: 16px; border: 1px solid #d8e2ed; border-radius: 10px; background: linear-gradient(145deg, #dce6f0, #edf2f7); box-shadow: 0 20px 50px #102d5b10; }
   .art-tag { position: absolute; top: 29px; left: 29px; color: var(--navy); font-size: .66rem; font-weight: 800; letter-spacing: .12em; }
-  .art-placeholder { position: relative; display: flex; min-height: 300px; flex-direction: column; align-items: center; justify-content: flex-end; padding: 18px; overflow: hidden; background: #edf2f7; text-align: center; }
-  .official-photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; }
+  .art-placeholder { position: relative; display: flex; width: 100%; aspect-ratio: 4 / 3; flex-direction: column; align-items: center; justify-content: flex-end; padding: 18px; overflow: hidden; background: #edf2f7; text-align: center; }
+  .official-photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; object-position: center; }
   .photo-note { position: relative; z-index: 1; padding: 8px 12px; border: 1px solid #ffffff80; border-radius: 20px; background: #ffffffdf; color: var(--navy); font-size: .67rem; font-weight: 700; backdrop-filter: blur(8px); }
   .intro-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 20px; }
   .inline-link, .calendar-link { color: var(--blue); text-decoration: none; font-size: .86rem; font-weight: 700; }
@@ -226,7 +227,8 @@ const quickLinks = [
   .pastoral-section { background: #f7f9fc; }
   .pastoral-section > .container > .section-heading { max-width: 760px; }
   .program-group-title { margin: 0 0 18px; color: var(--navy); font: 700 1.15rem var(--font-display); }
-  .program-group-title--second { margin-top: 44px; }
+  .program-group-title--second { margin-top: 0; }
+  .program-divider { width: 100%; height: 4px; margin: 44px 0 22px; border-radius: 2px; background: var(--red); }
   .program-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
   .closing-cta { padding: 49px 0; border-top: 3px solid var(--red); background: var(--blue); color: white; }
   .admissions-cta { padding: 36px 0; border-top: 4px solid var(--red); background: linear-gradient(115deg, var(--navy), #173d73); color: white; }
@@ -266,8 +268,7 @@ const quickLinks = [
     .quick-title { font-size: .92rem; }
     .intro-grid, .innovation-grid, .calendar-grid { grid-template-columns: 1fr; gap: 35px; }
     .intro-art { padding-left: 8px; }
-    .art-frame { min-height: 270px; }
-    .art-placeholder { min-height: 240px; }
+    .art-frame { min-height: 0; }
     .section-topline { display: block; }
     .subtle-link { display: inline-block; margin: -10px 0 25px; }
     .calendar-note { margin-top: 0; }
