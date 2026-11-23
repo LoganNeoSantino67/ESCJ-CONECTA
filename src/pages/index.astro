@@ -56,13 +56,6 @@ const quickLinks = [
     </div>
   </section>
 
-  <section class="admissions-cta" id="admisiones">
-    <div class="container admissions-inner">
-      <div><span class="eyebrow">Admisiones</span><h2>Postulación 2027</h2><p>Consulta la información publicada por el colegio para postular.</p></div>
-      <a class="button button--light" href={officialLinks.applications2027} target="_blank" rel="noreferrer">Ver información oficial <span aria-hidden="true">↗</span></a>
-    </div>
-  </section>
-
   <section class="section intro-section" id="colegio">
     <div class="container intro-grid">
       <div class="intro-art"><div class="art-frame"><span class="art-tag">ESCJ CONECTA</span><div class="art-placeholder"><img class="official-photo" src={`${base}images/about.jpg`} alt="Persona sosteniendo libros" /><span class="photo-note">Imagen publicada en el sitio institucional</span></div><span class="art-accent"></span></div></div>
@@ -107,6 +100,8 @@ const quickLinks = [
     </div>
   </section>
 
+  <section class="closing-cta"><div class="container closing-inner"><div><span class="eyebrow">ESCJ CONECTA</span><h2>Un espacio para encontrarnos.</h2></div><a class="button button--light" href="#secciones">Explorar el portal <span aria-hidden="true">→</span></a></div></section>
+
   <section class="section pastoral-section" id="pastoral">
     <div class="container">
       <SectionHeading eyebrow="Formación y comunidad" title="Pastoral y espacios extracurriculares" description="Conoce algunas experiencias de pastoral y espacios de formación que el colegio presenta en sus páginas oficiales." />
@@ -121,23 +116,32 @@ const quickLinks = [
     </div>
   </section>
 
-  <section class="closing-cta"><div class="container closing-inner"><div><span class="eyebrow">ESCJ CONECTA</span><h2>Un espacio para encontrarnos.</h2></div><a class="button button--light" href="#secciones">Explorar el portal <span aria-hidden="true">→</span></a></div></section>
+  <section class="admissions-cta" id="admisiones">
+    <div class="container admissions-inner">
+      <div><span class="eyebrow">Admisiones</span><h2>Postulación 2027</h2><p>Consulta la información publicada por el colegio para postular.</p></div>
+      <a class="button button--light" href={officialLinks.applications2027} target="_blank" rel="noreferrer">Ver información oficial <span aria-hidden="true">↗</span></a>
+    </div>
+  </section>
+
   <ContactSection />
 </BaseLayout>
 
 <style>
-  .hero { position: relative; overflow: hidden; background: radial-gradient(ellipse at 86% 48%, #e8eff7 0%, transparent 43%), linear-gradient(115deg, #fff 0%, #f7f9fc 62%, #eff4f9 100%); }
+  .hero { position: relative; overflow: hidden; background: linear-gradient(118deg, var(--navy) 0%, #173d73 58%, var(--blue) 100%); color: white; }
   .hero-grid { position: relative; z-index: 1; display: grid; grid-template-columns: 1.08fr .92fr; align-items: center; gap: 62px; min-height: 590px; padding-top: 44px; padding-bottom: 62px; }
   .hero-copy { padding: 24px 0; }
   .hero-copy .eyebrow { max-width: 520px; line-height: 1.6; }
-  .hero h1 { max-width: 680px; margin: 22px 0 18px; color: var(--navy); font: 800 clamp(2.8rem, 5.3vw, 4.8rem)/1.04 var(--font-display); letter-spacing: -.068em; }
-  .hero h1 span { color: var(--blue); }
-  .hero-lead { max-width: 510px; margin: 0; color: var(--muted); font-size: 1.08rem; line-height: 1.75; }
+  .hero h1 { max-width: 680px; margin: 22px 0 18px; color: white; font: 800 clamp(2.8rem, 5.3vw, 4.8rem)/1.04 var(--font-display); letter-spacing: -.068em; }
+  .hero h1 span { color: #f1f5fa; text-decoration: underline; text-decoration-color: var(--red); text-decoration-thickness: .08em; text-underline-offset: .1em; }
+  .hero .eyebrow, .hero .text-link { color: #f0f4fa; }
+  .hero-lead { max-width: 510px; margin: 0; color: #dbe5f1; font-size: 1.08rem; line-height: 1.75; }
   .hero-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 22px; margin-top: 29px; }
+  .hero .button { border-color: var(--red); background: var(--red); }
+  .hero .button:hover { border-color: #a9152b; background: #a9152b; }
   .text-link, .subtle-link { color: var(--blue); text-decoration: none; font-size: .88rem; font-weight: 700; }
   .text-link span, .subtle-link span { margin-left: 7px; }
   .hero-rule { display: flex; gap: 7px; margin-top: 52px; }
-  .hero-rule span { width: 34px; height: 3px; background: #c7d2e0; }
+  .hero-rule span { width: 34px; height: 3px; background: #8ca1bd; }
   .hero-rule span:first-child { width: 52px; background: var(--red); }
   .hero-visual { position: relative; display: flex; min-height: 425px; flex-direction: column; justify-content: space-between; padding: 23px; overflow: hidden; border: 1px solid #d6e0eb; border-radius: 12px; background: linear-gradient(145deg, #e5edf6 0%, #f9fbfd 48%, #dbe5f0 100%); box-shadow: 0 28px 70px #102d5b1b; }
   .hero-visual::before { position: absolute; right: -74px; bottom: -108px; width: 280px; height: 280px; border: 1px solid #1e4e911c; border-radius: 50%; box-shadow: 0 0 0 30px #1e4e9107, 0 0 0 60px #1e4e9106; content: ''; }
@@ -149,10 +153,11 @@ const quickLinks = [
   .crest-placeholder strong { max-width: 225px; margin-top: 12px; color: var(--navy); font: 700 .88rem/1.4 var(--font-display); }
   .visual-caption { justify-content: flex-start; gap: 10px; letter-spacing: .02em; }
   .caption-line { width: 25px; height: 2px; background: var(--red); }
-  .hero-bottom-band { position: absolute; right: -35px; bottom: 0; width: 39%; height: 7px; background: linear-gradient(90deg, var(--red) 0 28%, var(--blue) 28%); }
+  .hero-bottom-band { position: absolute; right: -35px; bottom: 0; width: 39%; height: 7px; background: linear-gradient(90deg, var(--red) 0 24%, white 24% 31%, var(--blue) 31%); }
   .quick-section { padding-top: 78px; }
   .quick-grid { display: grid; grid-template-columns: repeat(4, 1fr); border: 1px solid var(--line); border-radius: 7px; overflow: hidden; }
-  .quick-card { position: relative; display: flex; min-height: 190px; flex-direction: column; align-items: flex-start; padding: 25px 23px; border-right: 1px solid var(--line); text-decoration: none; transition: background .25s, transform .25s, box-shadow .25s; }
+  .quick-card { position: relative; display: flex; min-height: 190px; flex-direction: column; align-items: flex-start; padding: 22px 23px 25px; border-top: 3px solid var(--blue); border-right: 1px solid var(--line); text-decoration: none; transition: background .25s, transform .25s, box-shadow .25s; }
+  .quick-card:nth-child(even) { border-top-color: var(--red); }
   .quick-card:last-child { border-right: 0; }
   .quick-card:hover { z-index: 1; background: var(--blue-soft); box-shadow: 0 10px 24px #102d5b0d; transform: translateY(-3px); }
   .quick-number { color: var(--red); font-size: .72rem; font-weight: 800; letter-spacing: .1em; }
@@ -176,17 +181,17 @@ const quickLinks = [
   .section-topline { display: flex; justify-content: space-between; align-items: flex-end; gap: 25px; }
   .section-topline .section-heading { margin-bottom: 30px; }
   .subtle-link { margin-bottom: 36px; white-space: nowrap; }
-  .news-feature { position: relative; padding: 28px; border: 1px solid #e0e7ef; border-radius: 11px; background: linear-gradient(125deg, #f4f7fb, #fff 60%); }
+  .news-feature { position: relative; padding: 28px; border: 1px solid #e0e7ef; border-left: 4px solid var(--red); border-radius: 11px; background: linear-gradient(125deg, #f4f7fb, #fff 60%); }
   .news-feature-label { display: flex; align-items: center; gap: 9px; margin-bottom: 18px; color: var(--navy); font-size: .7rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
   .news-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--red); box-shadow: 0 0 0 4px #c735431a; }
-  .calendar-section { background: #f2f6fa; }
+  .calendar-section { background: #edf3f9; }
   .calendar-grid { display: grid; grid-template-columns: 1fr 290px; align-items: center; gap: 70px; }
-  .activity-board { padding: 22px; border: 1px solid #dce5ee; border-radius: 10px; background: white; box-shadow: 0 18px 42px #102d5b0b; }
+  .activity-board { padding: 22px; border: 1px solid #dce5ee; border-top: 3px solid var(--red); border-radius: 10px; background: white; box-shadow: 0 18px 42px #102d5b0b; }
   .activity-board-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 15px; color: var(--blue); font-size: .65rem; font-weight: 800; letter-spacing: .13em; }
-  .activity-board-top span:last-child { display: grid; width: 33px; height: 33px; place-items: center; border-radius: 8px; background: var(--blue-soft); font-size: 1rem; }
+  .activity-board-top span:last-child { display: grid; width: 33px; height: 33px; place-items: center; border-radius: 8px; background: var(--red-soft); color: var(--red); font-size: 1rem; }
   .calendar-link { display: inline-flex; align-items: center; gap: 8px; margin: 18px 4px 0; }
   .calendar-note { display: flex; flex-direction: column; align-items: flex-start; padding: 28px; border: 1px solid #dfe7f0; border-top: 3px solid var(--red); border-radius: 9px; background: white; box-shadow: 0 18px 40px #102d5b0b; }
-  .calendar-mark { display: grid; width: 43px; height: 43px; place-items: center; border-radius: 10px; background: var(--blue-soft); color: var(--blue); font: 800 .8rem var(--font-display); }
+  .calendar-mark { display: grid; width: 43px; height: 43px; place-items: center; border-radius: 10px; background: var(--red-soft); color: var(--red); font: 800 .8rem var(--font-display); }
   .calendar-note strong { margin-top: 18px; color: var(--navy); font: 700 1.05rem var(--font-display); }
   .calendar-note p { margin: 9px 0 19px; color: var(--muted); font-size: .86rem; line-height: 1.65; }
   .calendar-note a, .mun-card-content a { color: var(--blue); text-decoration: none; font-size: .82rem; font-weight: 700; }
@@ -196,10 +201,13 @@ const quickLinks = [
   .innovation-grid .section-heading { margin-bottom: 16px; }
   .supporting-copy { margin: 0 0 23px; color: var(--muted); font-size: .88rem; line-height: 1.7; }
   .project-list { display: grid; gap: 13px; }
+  .project-list :global(.project-card) { border-left: 3px solid var(--blue); }
+  .project-list :global(.project-card:nth-child(even)) { border-left-color: var(--red); }
   .mun-section { background: var(--surface); }
   .mun-heading { max-width: 700px; }
   .mun-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
-  .mun-card { display: grid; grid-template-columns: .8fr 1.2fr; min-height: 250px; overflow: hidden; border: 1px solid var(--line); border-radius: 10px; background: white; box-shadow: 0 15px 36px #102d5b09; transition: transform .25s, box-shadow .25s; }
+  .mun-card { display: grid; grid-template-columns: .8fr 1.2fr; min-height: 250px; overflow: hidden; border: 1px solid var(--line); border-top: 3px solid var(--blue); border-radius: 10px; background: white; box-shadow: 0 15px 36px #102d5b09; transition: transform .25s, box-shadow .25s; }
+  .mun-card--mini { border-top-color: var(--red); }
   .mun-card:hover { box-shadow: 0 22px 45px #102d5b14; transform: translateY(-3px); }
   .mun-logo-placeholder { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 13px; padding: 20px; background: #edf2f7; color: #63738a; text-align: center; }
   .mun-logo-image { background: #fff; }
@@ -209,26 +217,26 @@ const quickLinks = [
   .mun-card--mini .mun-logo-placeholder { border-bottom: 3px solid var(--red); }
   .mun-program-tag { display: inline-flex; align-items: center; gap: 8px; color: var(--blue); font-size: .65rem; font-weight: 800; letter-spacing: .12em; }
   .mun-program-tag::before { width: 7px; height: 7px; border-radius: 2px; background: var(--blue); content: ''; }
-  .mun-card--mini .mun-program-tag { color: #a62e3c; }
+  .mun-card--mini .mun-program-tag { color: var(--red); }
   .mun-card--mini .mun-program-tag::before { background: var(--red); }
   .mun-card-content { display: flex; flex-direction: column; align-items: flex-start; justify-content: center; padding: 25px; }
   .mun-card-content h3 { margin: 10px 0 7px; color: var(--navy); font: 700 1.3rem var(--font-display); }
   .mun-card-content p { margin: 0 0 16px; color: var(--muted); font-size: .83rem; }
   .mun-card-content a span { margin-left: 7px; }
-  .pastoral-section { background: #fff; }
+  .pastoral-section { background: #f7f9fc; }
   .pastoral-section > .container > .section-heading { max-width: 760px; }
   .program-group-title { margin: 0 0 18px; color: var(--navy); font: 700 1.15rem var(--font-display); }
   .program-group-title--second { margin-top: 44px; }
   .program-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
-  .closing-cta { padding: 49px 0; background: var(--blue); color: white; }
-  .admissions-cta { padding: 36px 0; background: var(--navy); color: white; }
+  .closing-cta { padding: 49px 0; border-top: 3px solid var(--red); background: var(--blue); color: white; }
+  .admissions-cta { padding: 36px 0; border-top: 4px solid var(--red); background: linear-gradient(115deg, var(--navy), #173d73); color: white; }
   .admissions-inner { display: flex; align-items: center; justify-content: space-between; gap: 25px; }
-  .admissions-inner .eyebrow { color: #e7a0a6; }
+  .admissions-inner .eyebrow { color: white; }
   .admissions-inner h2 { margin: 9px 0 5px; color: white; font: 700 clamp(1.4rem, 2.5vw, 1.9rem) var(--font-display); }
   .admissions-inner p { margin: 0; color: #c5d0df; font-size: .86rem; line-height: 1.6; }
   .calendar-document { display: flex; align-items: center; gap: 16px; padding: 19px; border: 1px solid var(--line); border-radius: 8px; background: white; color: inherit; text-decoration: none; transition: border-color .2s, transform .2s, box-shadow .2s; }
   .calendar-document:hover { transform: translateY(-2px); border-color: #b4c4d7; box-shadow: 0 12px 28px #102d5b0d; }
-  .calendar-file-type { display: grid; flex: 0 0 auto; width: 47px; height: 53px; place-items: center; border: 1px solid #efc3c8; border-radius: 7px; background: #fff7f8; color: #a62e3c; font-size: .68rem; font-weight: 800; }
+  .calendar-file-type { display: grid; flex: 0 0 auto; width: 47px; height: 53px; place-items: center; border: 1px solid #efc3c8; border-radius: 7px; background: var(--red-soft); color: var(--red); font-size: .68rem; font-weight: 800; }
   .calendar-document-copy { display: grid; flex: 1; gap: 5px; }
   .calendar-document-copy strong { color: var(--navy); font: 700 .95rem var(--font-display); }
   .calendar-document-copy > span { color: var(--muted); font-size: .78rem; line-height: 1.5; }

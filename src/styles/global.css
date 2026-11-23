@@ -5,7 +5,8 @@
   --navy: #102d5b;
   --blue: #1e4e91;
   --blue-soft: #edf3fa;
-  --red: #c73543;
+  --red: #c8102e;
+  --red-soft: #fff1f2;
   --ink: #18283d;
   --muted: #65748a;
   --line: #dce4ed;
@@ -26,7 +27,7 @@ body { margin: 0; min-width: 320px; }
 button, a { font: inherit; }
 a { color: inherit; }
 ::selection { background: #dce7f3; color: var(--navy); }
-button:focus-visible, a:focus-visible { outline: 3px solid #e07b83; outline-offset: 4px; }
+button:focus-visible, a:focus-visible { outline: 3px solid var(--red); outline-offset: 4px; }
 .container { width: min(1160px, calc(100% - 48px)); margin-inline: auto; }
 .eyebrow { display: inline-flex; align-items: center; gap: 10px; color: var(--blue); font-size: .76rem; font-weight: 700; letter-spacing: .13em; text-transform: uppercase; }
 .eyebrow::before { content: ''; width: 22px; height: 2px; background: var(--red); }

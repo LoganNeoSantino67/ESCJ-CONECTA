@@ -29,7 +29,8 @@ const links = [
 </header>
 
 <style>
-  .site-header { position: relative; z-index: 10; background: #ffffffed; border-bottom: 1px solid #e9eef4; backdrop-filter: blur(14px); }
+  .site-header { position: relative; z-index: 10; background: #ffffffed; border-bottom: 2px solid var(--blue); backdrop-filter: blur(14px); }
+  .site-header::after { position: absolute; bottom: -2px; left: max(24px, calc((100vw - 1160px) / 2)); width: 46px; height: 3px; background: var(--red); content: ''; }
   .header-inner { display: flex; align-items: center; justify-content: space-between; min-height: 82px; }
   .brand { display: flex; align-items: center; gap: 11px; color: var(--navy); text-decoration: none; }
   .brand-crest { width: 43px; height: 43px; object-fit: contain; }
@@ -39,14 +40,14 @@ const links = [
   .main-nav { display: flex; align-items: center; gap: clamp(15px, 2vw, 27px); }
   .main-nav a { position: relative; color: #43536a; text-decoration: none; font-size: .82rem; font-weight: 600; transition: color .2s; }
   .main-nav a:hover { color: var(--red); }
-  .main-nav .nav-contact { display: inline-flex; align-items: center; gap: 9px; padding: 11px 15px; border: 1px solid var(--navy); border-radius: 5px; background: var(--navy); color: white; transition: background .2s, transform .2s; }
-  .main-nav .nav-contact:hover { background: var(--blue); color: white; transform: translateY(-1px); }
+  .main-nav .nav-contact { display: inline-flex; align-items: center; gap: 9px; padding: 11px 15px; border: 1px solid var(--red); border-radius: 5px; background: var(--red); color: white; transition: background .2s, transform .2s; }
+  .main-nav .nav-contact:hover { border-color: #a9152b; background: #a9152b; color: white; transform: translateY(-1px); }
   .menu-toggle { display: none; }
   @media (max-width: 880px) {
     .header-inner { min-height: 72px; }
     .brand-crest { width: 38px; height: 38px; }
     .menu-toggle { display: grid; gap: 5px; width: 42px; height: 42px; place-content: center; border: 1px solid var(--line); border-radius: 6px; background: white; cursor: pointer; transition: background .2s, border-color .2s; }
-    .menu-toggle:hover { border-color: #a9bbcf; background: var(--surface); }
+    .menu-toggle:hover { border-color: var(--red); background: var(--surface); }
     .menu-toggle span { display: block; width: 19px; height: 2px; background: var(--navy); }
     .main-nav { position: absolute; top: 100%; right: 0; left: 0; display: none; align-items: stretch; gap: 0; padding: 8px 24px 18px; border-bottom: 1px solid var(--line); background: white; box-shadow: 0 12px 20px #102d5b12; }
     .main-nav.is-open { display: flex; flex-direction: column; }
