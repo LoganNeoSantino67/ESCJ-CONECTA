@@ -5,6 +5,7 @@ import EmptyStateCard from '../components/EmptyStateCard.astro';
 import ProjectCard from '../components/ProjectCard.astro';
 import ProgramCard from '../components/ProgramCard.astro';
 import ContactSection from '../components/ContactSection.astro';
+import SectionDivider from '../components/SectionDivider.astro';
 import { extracurricularPrograms, institutionalProjects, officialLinks, pastoralExperiences, schoolIntroduction } from '../data/institutional';
 
 const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
@@ -40,6 +41,8 @@ const quickLinks = [
     <div class="hero-bottom-band" aria-hidden="true"></div>
   </section>
 
+  <section class="closing-cta"><div class="container closing-inner"><div><span class="eyebrow">ESCJ CONECTA</span><h2>Un espacio para encontrarnos.</h2></div><a class="button button--light" href="#secciones">Explorar el portal <span aria-hidden="true">→</span></a></div></section>
+
   <section class="section quick-section" id="secciones">
     <div class="container">
       <SectionHeading eyebrow="Explora ESCJ" title="Todo lo que nos conecta" description="Accede a la información y los espacios principales de nuestra comunidad educativa." />
@@ -55,6 +58,7 @@ const quickLinks = [
       </div>
     </div>
   </section>
+  <SectionDivider />
 
   <section class="section intro-section" id="colegio">
     <div class="container intro-grid">
@@ -89,6 +93,7 @@ const quickLinks = [
       <div class="project-list" id="proyectos-estudiantiles">{institutionalProjects.map((project) => <ProjectCard {...project} />)}</div>
     </div>
   </section>
+  <SectionDivider />
 
   <section class="section mun-section" id="modelos-mun">
     <div class="container">
@@ -100,8 +105,6 @@ const quickLinks = [
     </div>
   </section>
 
-  <section class="closing-cta"><div class="container closing-inner"><div><span class="eyebrow">ESCJ CONECTA</span><h2>Un espacio para encontrarnos.</h2></div><a class="button button--light" href="#secciones">Explorar el portal <span aria-hidden="true">→</span></a></div></section>
-
   <section class="section pastoral-section" id="pastoral">
     <div class="container">
       <SectionHeading eyebrow="Formación y comunidad" title="Pastoral y espacios extracurriculares" description="Conoce algunas experiencias de pastoral y espacios de formación que el colegio presenta en sus páginas oficiales." />
@@ -109,13 +112,13 @@ const quickLinks = [
       <div class="program-grid">
         {pastoralExperiences.map((item) => <ProgramCard title={item.title} description={item.description} href={item.href} label="Pastoral" image={item.image} imageAlt={item.imageAlt} video={item.video} />)}
       </div>
-      <div class="program-divider" aria-hidden="true"></div>
       <h3 class="program-group-title program-group-title--second">Espacios de formación extracurricular</h3>
       <div class="program-grid program-grid--extracurricular">
         {extracurricularPrograms.map((item) => <ProgramCard title={item.title} description={item.description} href={item.href} label={item.audience} image={item.image} imageAlt={item.imageAlt} images={item.images} />)}
       </div>
     </div>
   </section>
+  <SectionDivider />
 
   <section class="admissions-cta" id="admisiones">
     <div class="container admissions-inner">
@@ -202,8 +205,6 @@ const quickLinks = [
   .innovation-grid .section-heading { margin-bottom: 16px; }
   .supporting-copy { margin: 0 0 23px; color: var(--muted); font-size: .88rem; line-height: 1.7; }
   .project-list { display: grid; gap: 13px; }
-  .project-list :global(.project-card) { border-left: 3px solid var(--blue); }
-  .project-list :global(.project-card:nth-child(even)) { border-left-color: var(--red); }
   .mun-section { background: var(--surface); }
   .mun-heading { max-width: 700px; }
   .mun-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
@@ -227,8 +228,7 @@ const quickLinks = [
   .pastoral-section { background: #f7f9fc; }
   .pastoral-section > .container > .section-heading { max-width: 760px; }
   .program-group-title { margin: 0 0 18px; color: var(--navy); font: 700 1.15rem var(--font-display); }
-  .program-group-title--second { margin-top: 0; }
-  .program-divider { width: 100%; height: 4px; margin: 44px 0 22px; border-radius: 2px; background: var(--red); }
+  .program-group-title--second { margin-top: 44px; }
   .program-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
   .closing-cta { padding: 49px 0; border-top: 3px solid var(--red); background: var(--blue); color: white; }
   .admissions-cta { padding: 36px 0; border-top: 4px solid var(--red); background: linear-gradient(115deg, var(--navy), #173d73); color: white; }

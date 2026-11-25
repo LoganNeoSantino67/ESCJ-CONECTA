@@ -39,6 +39,7 @@ const assetUrl = (src: string) => `${base}${src.startsWith('/') ? src.slice(1) :
 
 <style>
   .program-card { display: flex; min-height: 205px; flex-direction: column; overflow: hidden; border: 1px solid var(--line); border-top: 3px solid var(--blue); border-radius: 8px; background: white; color: inherit; box-shadow: 0 12px 30px #102d5b08; transition: transform .22s, box-shadow .22s, border-color .22s; }
+  .program-card:nth-child(even) { border-top-color: var(--red); }
   .program-card:hover { transform: translateY(-3px); border-color: #b9c9dc; box-shadow: 0 18px 36px #102d5b12; }
   .program-card-media { display: flex; width: 100%; height: 178px; align-items: center; justify-content: center; gap: 10px; padding: 10px; overflow: hidden; background: #f2f5f8; }
   .program-card-media img { display: block; width: 100%; height: 100%; object-fit: cover; }
@@ -53,6 +54,4 @@ const assetUrl = (src: string) => `${base}${src.startsWith('/') ? src.slice(1) :
   .program-card-link { display: inline-block; margin-top: auto; padding-top: 16px; color: var(--blue); font-size: .75rem; font-weight: 700; text-decoration: none; }
   .program-card-link:hover { color: var(--red); text-decoration: underline; text-underline-offset: 3px; }
   .program-card-link span { margin-left: 5px; }
-  :global(.program-grid--extracurricular) .program-card { border-top-color: var(--red); }
-  :global(.program-grid--extracurricular) .program-card-label { color: var(--red); }
 </style>
